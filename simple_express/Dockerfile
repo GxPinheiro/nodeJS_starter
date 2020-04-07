@@ -1,7 +1,19 @@
 FROM node:10
-WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install 
-COPY . .
+WORKDIR /app
+
+# Add package file
+COPY package*.json ./
+
+# Install deps
+RUN npm i
+
+# Copy source
+COPY . ./
+COPY src ./src
+COPY tsconfig.json ./tsconfig.json
+RUN npm run compile
+
+# Expose port 3000
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+
+CMD ["node", "dist/app.js"]

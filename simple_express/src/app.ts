@@ -1,7 +1,7 @@
 import * as express from 'express';
 import Routes from './interfaces/routes.interface';
 
-export default class App {
+class App {
     public app: express.Application;
     public port: (string | number);
     public env: boolean;
@@ -30,3 +30,5 @@ export default class App {
         });
     }
 }
+
+export default App;
